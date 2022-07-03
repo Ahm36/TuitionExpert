@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Admin Home</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Category
+            </a>
+            <ul
+              class="dropdown-menu"
+              aria-labelledby="navbarDropdownMenuLink"
+            >
+              <li>
+                <a class="dropdown-item" href="{% url 'add-category' %}"
+                  >Add Category</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'view-category' %}"
+                  >View Categories</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Course
+            </a>
+            <ul
+              class="dropdown-menu"
+              aria-labelledby="navbarDropdownMenuLink"
+            >
+              <li>
+                <a class="dropdown-item" href="{% url 'add-course' %}"
+                  >Add Course</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'view-course' %}"
+                  >View Courses</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Subject
+            </a>
+            <ul
+              class="dropdown-menu"
+              aria-labelledby="navbarDropdownMenuLink"
+            >
+              <li>
+                <a class="dropdown-item" href="{% url 'add-subject' %}"
+                  >Add Subject</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'view-subjects' %}"
+                  >View Subjects</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'expert-requests' %}">Expert Requests</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'student-requests' %}">Student Requests</a>
+          </li>
+      
+        </ul>
+        
+
+      </div>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="text-white">
+        <a href="{% url 'logout-admin' %}" class="nav-item nav-link">
+          <button type="button" class="btn btn-danger">Logout</button></a>
+      </li>
+    </ul>
+  </nav>
+    
+<div class = 'container-fluid text-center'>
+<h2>Student Requests</h2>
+      {% for s in sreq %}
+      
+      <div class="col-sm-6 text-center">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Student Request</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Student : {{s.student.name}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Expert : {{s.expert.name}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Request Time  : {{s.req_date}}</h6>
+           
+            {% if s.status == "W" %}
+            <a href="{% url 'approve-sreq' s.id %}" class="btn btn-success">Approve Request</a>
+            <a href="{% url 'reject-sreq' s.id %}" class="btn btn-danger">Reject Request</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+  
+      {% endfor %}
+
+
+    </div>
+
+</body>
+</html>

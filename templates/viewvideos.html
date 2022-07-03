@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuition Expert</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Tuition Expert</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="{% url 'student-home' %}">Student Home </a>
+        <a class="nav-item nav-link" href="{% url 'student-classrooms' %}">Classrooms</a>
+
+      </div>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="text-white">
+        <a href="{% url 'logout-student' %}" class="nav-item nav-link">
+          <button type="button" class="btn btn-danger">Logout</button></a>
+      </li>
+    </ul>
+  </nav>
+        <div class="container-fluid text-center">
+
+            <h3>Videos</h3>
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Video name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">File</th>
+                    <th scope="col">Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for vid in video %}
+                  <tr>
+                    <th scope="row"></th>
+                    <td>{{vid.title}}</td>
+                    <td>{{vid.description}}</td>
+                    <td><a href="{{vid.file.url}}" class="card-link">File</a></td>
+                    <td>date</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+
+
+            </div>
+    
+</body>
+</html>
